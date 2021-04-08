@@ -21,8 +21,41 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+function minesweeper(matrix) {
+  const newMatrix = matrix.map((col, i) => col.map((item) => (item[i] ? 0 : 0)));
+
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[i].length; j++) {
+      if (matrix[i][j]) {
+        newMatrix[i][j] += 1;
+        if (i + 1 <= matrix[i].length) {
+          newMatrix[i + 1][j] += 1;
+        }
+        if (i - 1 >= 0) {
+          newMatrix[i - 1][j] += 1;
+        }
+        if (j + 1 <= matrix[j].length) {
+          newMatrix[i][j + 1] += 1;
+        }
+        if (j - 1 >= 0) {
+          newMatrix[i][j - 1] += 1;
+        }
+        if (i + 1 <= matrix[i].length && j + 1 <= matrix[j].length && !matrix[i + 1][j + 1]) {
+          newMatrix[i + 1][j + 1] += 1;
+        }
+        if (i - 1 >= 0 && j + 1 <= matrix[j].length && !matrix[i - 1][j + 1]) {
+          newMatrix[i - 1][j + 1] += 1;
+        }
+        if (i + 1 <= matrix[i].length && j - 1 >= 0 && !matrix[i + 1][j - 1]) {
+          newMatrix[i + 1][j - 1] += 1;
+        }
+        if (i - 1 >= 0 && j - 1 >= 0 && !matrix[i - 1][j - 1]) {
+          newMatrix[i - 1][j - 1] += 1;
+        }
+      }
+    }
+  }
+  return newMatrix;
 }
 
 module.exports = minesweeper;
