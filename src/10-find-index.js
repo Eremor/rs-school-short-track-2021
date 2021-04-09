@@ -12,9 +12,41 @@
  *
  */
 function findIndex(array, value) {
-  const index = [];
-  array.map((el, i) => ((el === value) ? index.push(i) : ''));
-  return index[0];
+  // const index = [];
+  // array.map((el, i) => ((el === value) ? index.push(i) : ''));
+  // return index[0];
+
+  let start = 0;
+  let end = array.length;
+  // let middle = Math.floor((start + end) / 2);
+  let middle;
+  let index;
+
+  // for (let i = 0; i < array.length; i++) {
+  //   if (array[middle] !== value) {
+  //     if (value < array[middle]) {
+  //       end = middle;
+  //     } else {
+  //       start = middle;
+  //     }
+  //     middle = Math.floor((start + end) / 2);
+  //   } else {
+  //     index = middle;
+  //   }
+  // }
+  while (start < end) {
+    middle = Math.floor((start + end) / 2);
+    if (value < array[middle]) {
+      end = middle;
+    } else {
+      start = middle + 1;
+    }
+    if (value === array[middle]) {
+      index = middle;
+    }
+  }
+
+  return index;
 }
 
 module.exports = findIndex;
