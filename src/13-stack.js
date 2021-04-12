@@ -11,31 +11,52 @@
  *
  */
 class Stack {
+  // constructor() {
+  //   this.index = 0;
+  //   this.stack = {};
+  // }
+
+  // push(element) {
+  //   const index = ++this.index;
+  //   this.stack[index] = element;
+  // }
+
+  // pop() {
+  //   let deleteElement;
+
+  //   if (this.index) {
+  //     deleteElement = this.stack[this.index];
+
+  //     delete this.stack[this.index];
+  //     this.index--;
+  //   }
+
+  //   return deleteElement;
+  // }
+
+  // peek() {
+  //   return this.stack[this.index];
+  // }
   constructor() {
-    this.index = 0;
-    this.stack = {};
+    this.stack = [];
   }
 
   push(element) {
-    const index = ++this.index;
-    this.stack[index] = element;
+    this.stack.push(element);
   }
 
   pop() {
-    let deleteElement;
+    const deleteElement = this.stack[this.stack.length - 1];
 
-    if (this.index) {
-      deleteElement = this.stack[this.index];
-
-      delete this.stack[this.index];
-      this.index--;
+    if (this.stack.length > 0) {
+      this.stack.pop();
     }
 
     return deleteElement;
   }
 
   peek() {
-    return this.stack[this.index];
+    return this.stack[this.stack.length - 1];
   }
 }
 
